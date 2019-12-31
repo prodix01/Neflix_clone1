@@ -29,7 +29,7 @@ export const moviesApi = {
 export const tvApi = {
     popular: () => api.get("tv/popular"),
     topRate: () => api.get("tv/top_rated"),
-    airingToday: () => api.get("tv/airing_today")
+    airingToday: () => api.get("tv/airing_today"),
     tvDetail: id =>
         api.get(`tv/${id}`, {
             params : {
