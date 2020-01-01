@@ -51,6 +51,16 @@ class SearchContainer extends Component {
         }
     };
 
+    updateTerm = event => {
+        const {
+            target: {value}
+        } = event;
+
+        this.setState({
+            searchTerm: value
+        });
+    };
+
     render() {
 
         const {
@@ -62,11 +72,12 @@ class SearchContainer extends Component {
         } = this.state;
 
         console.log(movieResults);
-        
+
         return (
             <SearchPresenter
                 loading={loading}
                 handleSubmit={this.handleSubmit}
+                updateTerm={this.updateTerm}
                 movieResults={movieResults}
                 tvResults={tvResults}
                 searchTerm={searchTerm}
