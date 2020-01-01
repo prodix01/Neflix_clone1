@@ -4,27 +4,47 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 const Container = styled.div`
-
-`;
-
-const ImgContainer = styled.div`
-
+    font-size: 12px;
 `;
 
 const Image = styled.div`
-
+    background-image: url(${props => props.bgUrl});
+    height: 180px;
+    background-size: cover;
+    border-radius: 4px;
+    background-position: center;
+    transition: opacity 0.1s linear;
 `;
 
 const Rating = styled.span`
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.1s linear;
+`;
 
+const ImgContainer = styled.div`
+    margin-bottom: 7px;
+    position: relative;
+    &:hover {
+       ${Image} {
+          opacity: 0.3;
+       }
+       ${Rating} {
+          opacity: 1;
+       }
+    }
 `;
 
 const Title = styled.span`
-
+    display: block;
+    margin-bottom: 3px;
 `;
 
 const Year = styled.span`
-
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
 `;
 
 const Poster = ({
@@ -36,12 +56,16 @@ const Poster = ({
 }) => (
     <Container>
         <ImgContainer>
-            <Image/>
+            <Image bgUrl={
+                imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : require("./empty.png")
+            }/>
             <Rating>
                 <span role="img" aria-label="rating">
                     ⭐️
                 </span>
-                {rating / 10}
+                {rating} / 10
             </Rating>
         </ImgContainer>
         <Title>{title}</Title>
