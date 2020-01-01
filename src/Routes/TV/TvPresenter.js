@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Loader from "../../Components/Loader";
 
 const TvPresenter = ({popular, topRate, airingToday, loading, error}) =>
-    <h1>{popular}</h1>;
+    loading ? (
+        <Loader/>
+    ) : (
+        <h1>2222</h1>
+    );
 
 TvPresenter.propTypes = {
     popular: PropTypes.array,
