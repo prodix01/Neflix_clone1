@@ -3,6 +3,24 @@ import PropTypes from "prop-types";
 import Loader from "../../Components/Loader";
 import Poster from "../../Components/Poster";
 import Section from "../../Components/Section";
+import styled from "styled-components";
+
+
+const Container = styled.div`
+    padding: 10px 20px;
+`;
+
+const Form = styled.form`
+    margin-bottom: 50px;
+    width: 100%;
+    
+`;
+
+const Input = styled.input`
+    all: unset;
+    font-size: 28px;
+    width: 100%;
+`;
 
 
 class SearchPresenter extends Component{
@@ -20,14 +38,14 @@ class SearchPresenter extends Component{
         } = this.props;
 
         return (
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <input
+            <Container>
+                <Form onSubmit={handleSubmit}>
+                    <Input
                         placeholder="Search Movies or Tv Shows..."
                         value={searchTerm}
                         onChange={updateTerm}
                     />
-                </form>
+                </Form>
 
                 {
                     loading ? (
@@ -63,7 +81,7 @@ class SearchPresenter extends Component{
                         </>
                     )
                 }
-            </div>
+            </Container>
         );
     }
 }
