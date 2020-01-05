@@ -4,6 +4,7 @@ import Loader from "../../Components/Loader";
 import Section from "../../Components/Section";
 import Poster from "../../Components/Poster";
 import styled from "styled-components";
+import Message from "../../Components/Message";
 
 const Contianer = styled.div`
     padding: 20px;
@@ -53,6 +54,8 @@ const HomePresenter = ({nowPlaying, popular, upComing, loading, error}) =>
                     )}
                 </Section>
             )}
+
+            {error && <Message color="#e74c3c" text={error}/>}
         </Contianer>
     );
 

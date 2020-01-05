@@ -4,6 +4,7 @@ import Loader from "../../Components/Loader";
 import Poster from "../../Components/Poster";
 import Section from "../../Components/Section";
 import styled from "styled-components";
+import Message from "../../Components/Message";
 
 
 const Container = styled.div`
@@ -65,6 +66,7 @@ class SearchPresenter extends Component{
                                     )}
                                 </Section>
                             )}
+
                             {tvResults && tvResults.length > 0 && (
                                 <Section title="TV 프로그램 검색 결과">
                                     {tvResults.map(tv =>
@@ -81,6 +83,13 @@ class SearchPresenter extends Component{
                         </>
                     )
                 }
+
+                {error && <Message color="#e74c3c" text={error}/>}
+                {tvResults && movieResults
+                && tvResults.length === 0
+                && movieResults.length === 0
+                && <Message color="#95a5a6" text="Noting Found."/>}
+
             </Container>
         );
     }
