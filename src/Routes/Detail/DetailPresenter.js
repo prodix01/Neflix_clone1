@@ -41,6 +41,37 @@ const Cover = styled.div`
     border-radius: 5px;
 `;
 
+const Title = styled.h3`
+    font-size: 32px;
+    
+`;
+
+const ItemContainer = styled.div`
+    margin: 20px 0px;
+    
+`;
+
+const Item = styled.span`
+  
+`;
+
+const Data = styled.div`
+    width: 70%;
+    margin-left: 10px;
+`;
+
+const Divider = styled.span`
+    margin: 0px 10px;
+`;
+
+const Overview = styled.p`
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.7;
+    width: 80%;
+    padding-top: 20px;
+`;
+
 const DetailPresenter = ({result, loading, error}) => (
     loading ? (
         <Loader/>
@@ -54,6 +85,25 @@ const DetailPresenter = ({result, loading, error}) => (
                         : require("../../Components/empty.png")
                     }
                 />
+                <Data>
+                    <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                    <ItemContainer>
+                        <Item>{result.release_date
+                            ? result.release_date.substring(0, 4)
+                            : result.first_air_date.substring(0, 4)}
+                        </Item>
+                        <Divider>•</Divider>
+                        <Item>
+                            {result.genres
+                            && result.genres.map((genre, index) =>
+                            index === result.genres.lengh - 1
+                                ? genre.name
+                                : `${genre.name} / `
+                            )}
+                        </Item>
+                        <Overview>{result.overview}</Overview>
+                    </ItemContainer>
+                </Data>
             </Content>
         </Container>
     )
