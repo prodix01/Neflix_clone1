@@ -50,6 +50,7 @@ const TvPresenter = ({popular, topRate, airingToday, loading, error}) =>
                             rating={tv.vote_average}
                             year={tv.first_air_date}
                             imageUrl={tv.poster_path}
+
                         />
                     )}
                 </Section>

@@ -52,25 +52,28 @@ const Poster = ({
     imageUrl,
     title,
     rating,
-    year
+    year,
+    isMovie = false
 }) => (
-    <Container>
-        <ImgContainer>
-            <Image bgUrl={
-                imageUrl
-                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-                : require("./empty.png")
-            }/>
-            <Rating>
-                <span role="img" aria-label="rating">
-                    ⭐️
-                </span>
-                {rating} / 10
-            </Rating>
-        </ImgContainer>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
-    </Container>
+    <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+        <Container>
+            <ImgContainer>
+                <Image bgUrl={
+                    imageUrl
+                    ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                    : require("./empty.png")
+                }/>
+                <Rating>
+                    <span role="img" aria-label="rating">
+                        ⭐️
+                    </span>
+                    {rating} / 10
+                </Rating>
+            </ImgContainer>
+            <Title>{title}</Title>
+            <Year>{year}</Year>
+        </Container>
+    </Link>
 );
 
 Poster.propTypes = {
@@ -78,7 +81,8 @@ Poster.propTypes = {
     imageUrl: PropTypes.string,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number,
-    year: PropTypes.string
+    year: PropTypes.string,
+    isMovie: PropTypes.bool
 }
 
 export default Poster;

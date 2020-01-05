@@ -6,7 +6,7 @@ import Poster from "../../Components/Poster";
 import styled from "styled-components";
 import Message from "../../Components/Message";
 
-const Contianer = styled.div`
+const Container = styled.div`
     padding: 20px;
 `;
 
@@ -14,7 +14,7 @@ const HomePresenter = ({nowPlaying, popular, upComing, loading, error}) =>
     loading ? (
         <Loader/>
     ) : (
-        <Contianer>
+        <Container>
             {nowPlaying && nowPlaying.length > 0 && (
                 <Section title="최신영화">
                     {nowPlaying.map(movie =>
@@ -24,6 +24,7 @@ const HomePresenter = ({nowPlaying, popular, upComing, loading, error}) =>
                             rating={movie.vote_average}
                             year={movie.release_date}
                             imageUrl={movie.poster_path}
+                            isMovie={true}
                         />
                     )}
                 </Section>
@@ -37,6 +38,7 @@ const HomePresenter = ({nowPlaying, popular, upComing, loading, error}) =>
                             rating={movie.vote_average}
                             year={movie.release_date}
                             imageUrl={movie.poster_path}
+                            isMovie={true}
                         />
                     )}
                 </Section>
@@ -50,13 +52,14 @@ const HomePresenter = ({nowPlaying, popular, upComing, loading, error}) =>
                             rating={movie.vote_average}
                             year={movie.release_date}
                             imageUrl={movie.poster_path}
+                            isMovie={true}
                         />
                     )}
                 </Section>
             )}
 
             {error && <Message color="#e74c3c" text={error}/>}
-        </Contianer>
+        </Container>
     );
 
 HomePresenter.propTypes = {
@@ -64,7 +67,7 @@ HomePresenter.propTypes = {
     popular: PropTypes.array,
     upComing: PropTypes.array,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.string
+    error: PropTypes.string,
 };
 
 export default HomePresenter;
