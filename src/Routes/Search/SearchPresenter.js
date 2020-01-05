@@ -5,7 +5,7 @@ import Poster from "../../Components/Poster";
 import Section from "../../Components/Section";
 import styled from "styled-components";
 import Message from "../../Components/Message";
-
+import Helmet from "react-helmet";
 
 const Container = styled.div`
     padding: 10px 20px;
@@ -39,7 +39,11 @@ class SearchPresenter extends Component{
         } = this.props;
 
         return (
+
             <Container>
+                <Helmet>
+                    <title>Search | Netflix</title>
+                </Helmet>
                 <Form onSubmit={handleSubmit}>
                     <Input
                         placeholder="Search Movies or Tv Shows..."

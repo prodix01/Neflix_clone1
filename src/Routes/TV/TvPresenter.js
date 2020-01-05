@@ -5,61 +5,71 @@ import Section from "../../Components/Section";
 import Poster from "../../Components/Poster";
 import styled from "styled-components";
 import Message from "../../Components/Message";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
     padding: 20px;
 `;
 
-const TvPresenter = ({popular, topRate, airingToday, loading, error}) =>
-    loading ? (
-        <Loader/>
-    ) : (
-        <Container>
-            {popular && popular.length > 0 && (
-                <Section title="인기 TV 프로그램">
-                    {popular.map(tv =>
-                        <Poster
-                            id={tv.id}
-                            title={tv.name}
-                            rating={tv.vote_average}
-                            year={tv.first_air_date}
-                            imageUrl={tv.poster_path}
-                        />
-                    )}
-                </Section>
-            )}
-            {airingToday && airingToday.length > 0 && (
-                <Section title="방영중 TV 프로그램">
-                    {airingToday.map(tv =>
-                        <Poster
-                            id={tv.id}
-                            title={tv.name}
-                            rating={tv.vote_average}
-                            year={tv.first_air_date}
-                            imageUrl={tv.poster_path}
-                        />
-                    )}
-                </Section>
-            )}
-            {topRate && topRate.length > 0 && (
-                <Section title="최고 TV 프로그램">
-                    {topRate.map(tv =>
-                        <Poster
-                            id={tv.id}
-                            title={tv.name}
-                            rating={tv.vote_average}
-                            year={tv.first_air_date}
-                            imageUrl={tv.poster_path}
+const TvPresenter = ({popular, topRate, airingToday, loading, error}) =>(
+    <>
+        <Helmet>
+            <title>TV | Netflix</title>
+        </Helmet>
+        {loading ? (
+            <Loader/>
+        ) : (
+            <Container>
+                <Helmet>
+                    <title>TV | Netflix</title>
+                </Helmet>
+                {popular && popular.length > 0 && (
+                    <Section title="인기 TV 프로그램">
+                        {popular.map(tv =>
+                            <Poster
+                                id={tv.id}
+                                title={tv.name}
+                                rating={tv.vote_average}
+                                year={tv.first_air_date}
+                                imageUrl={tv.poster_path}
+                            />
+                        )}
+                    </Section>
+                )}
+                {airingToday && airingToday.length > 0 && (
+                    <Section title="방영중 TV 프로그램">
+                        {airingToday.map(tv =>
+                            <Poster
+                                id={tv.id}
+                                title={tv.name}
+                                rating={tv.vote_average}
+                                year={tv.first_air_date}
+                                imageUrl={tv.poster_path}
+                            />
+                        )}
+                    </Section>
+                )}
+                {topRate && topRate.length > 0 && (
+                    <Section title="최고 TV 프로그램">
+                        {topRate.map(tv =>
+                            <Poster
+                                id={tv.id}
+                                title={tv.name}
+                                rating={tv.vote_average}
+                                year={tv.first_air_date}
+                                imageUrl={tv.poster_path}
 
-                        />
-                    )}
-                </Section>
-            )}
+                            />
+                        )}
+                    </Section>
+                )}
 
-            {error && <Message color="#e74c3c" text={error}/>}
+                {error && <Message color="#e74c3c" text={error}/>}
 
-        </Container>
-    );
+            </Container>
+        )}
+    </>
+);
 
 TvPresenter.propTypes = {
     popular: PropTypes.array,
